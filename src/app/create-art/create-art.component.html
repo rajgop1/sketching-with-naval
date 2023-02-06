@@ -1,0 +1,130 @@
+<div class="home-third padding-inline-responsive padding-block-4 padding-top-8" color-dir backcolor="#FAFAFA">
+    <div class="left-right-container flex-row-responsive gap-80">
+        <div class="left flex-column gap-30">
+            <div class="main-img">
+                <div class="img-container">
+                    <img src="assets/images/art1.png" alt="">
+                </div>
+            </div>
+            <div class="other-img">
+                <div class="grid-container">
+                    <div class="img-container">
+                        <img src="assets/images/art2.png" alt="">
+                    </div>
+                    <div class="img-container">
+                        <img src="assets/images/johnny.png" alt="">
+                    </div>
+                    <div class="img-container">
+                        <img src="assets/images/ele.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right flex-column gap-30">
+            <div class="flex-column">
+                <h2 class="heading-style-four">Handmade Pencil Sketch</h2>
+                <div color-dir color="primary" class="heading-style-six weight-600">&#8377;1,499.00 - &#8377;2,999.00
+                </div>
+            </div>
+            <div class="flex-column gap-10">
+                <h3 class="heading-style-six weight-700">Want a <span color-dir color="pending-color"> gift</span> for
+                    your special ones?</h3>
+                <div class="flex-column gap-10">
+                    <p class="medium-text weight-600">Gift them a handmade sketch, it tells how much time you have
+                        invested to present a gift for them. It brings them close to your heart and they will remember
+                        you everytime they see your present.</p>
+                    <p class="medium-text weight-600">Best gift for
+                        <span class="weight-700" color-dir color="primary">Birthdays, Anniversary, Mother’s day,
+                            Friendship day, and on any special occasion.</span>
+                    </p>
+                </div>
+            </div>
+            <input (change)="onFileUpload($event)" style="display: none;" type="file" id="file-upload"
+                accept="image/*" />
+            <div class="flex-column gap-15  options-container" appDragDrop (files)="filesDropped($event)">
+                <label *ngIf="!fileUploaded" for="file-upload"
+                    class="flex-column gap-10 upload-image-container pointer">
+                    <div class="flex-row gap-20 align-center justify-center">
+                        <div class="img-container ">
+                            <img src="assets/images/upload-cloud.svg" alt="">
+                        </div>
+                        <h4 class="heading-style-six weight-700" color-dir color="primary">Upload or Drag Image</h4>
+                    </div>
+                </label>
+                <div *ngIf="fileUploaded" class="upload-file-main">
+                    <div class="flex-row space-between align-center">
+                        <div class="flex-row-responsive gap-8">
+                            <span color-dir color="primary-black-08"
+                                class="small-body-text file-name">{{fileName}}</span>
+                            <span color-dir color="#ff0000" class="small-body-text pointer"
+                                (click)="removeSelectedFile()">Remove</span>
+                        </div>
+                        <span color-dir color="primary-black-07" class="small-body-text">{{fileSize}}KB</span>
+                    </div>
+                </div>
+                <div class="flex-column gap-10">
+                    <h4 class="body-text weight-700">Select Size:</h4>
+                    <div class="flex-row gap-10 size-container">
+                        <button *ngFor="let size of sizes" class="size pointer button-style-remove" (click)="onSelectSize(size)"
+                            [class.active-size]="selectedSize?.Size==size?.Size">{{size?.Size}}</button>
+                        <!-- <span class="size pointer" (click)="onSelectSize('A2')" [class.active-size]="selectedSize==='A2'">A2</span>
+                        <span class="size pointer" (click)="onSelectSize('A3')" [class.active-size]="selectedSize==='A3'">A3</span>
+                        <span class="size pointer" (click)="onSelectSize('A4')" [class.active-size]="selectedSize==='A4'">A4</span> -->
+                    </div>
+                </div>
+                <div class="flex-column gap-10">
+                    <h4 class="body-text weight-700">Number of Faces:</h4>
+                    <div class="flex-row gap-10 face-container">
+                        <button *ngFor="let face of faces" class="face pointer button-style-remove" (click)="onSelectFace(face)"
+                            [class.active-face]="selectedFace?.Face===face?.Face">{{face?.Face}} Face</button>
+                        <!-- <span class="face pointer" (click)="onSelectFace(1)" [class.active-face]="selectedFace===1">1 Face</span>
+                        <span class="face pointer" (click)="onSelectFace(2)" [class.active-face]="selectedFace===2">2 Faces</span>
+                        <span class="face pointer" (click)="onSelectFace(3)" [class.active-face]="selectedFace===3">3 Faces</span> -->
+                    </div>
+                </div>
+                <div class="flex-column gap-10">
+                    <h4 class="body-text weight-700">Do you want to add Frame?</h4>
+                    <div class="flex-row frame-container gap-10">
+                        <button class="frame pointer button-style-remove" (click)="onFrameSelect(true)"
+                            [class.active-frame]="isFrameSelected===true">Yes</button>
+                        <button class="frame pointer button-style-remove" (click)="onFrameSelect(false)"
+                            [class.active-frame]="isFrameSelected===false">No</button>
+                    </div>
+                </div>
+                <div *ngIf="totalCost"  class="heading-style-six total-cost flex-column gap-10 gap-20">
+                    <h2 class="heading-style-five order-summary" color-dir color="primary">Order Summary</h2>
+                    <div class="body-text flex-column gap-5" color-dir color="black">
+                        <div class="flex-row space-between weight-600">
+                            <span class="weight-600">Size: <span color-dir color="primary">{{selectedSize?.Size}}</span></span>
+                            <span color-dir color="green">{{selectedSize?.Price | currency:'INR':'symbol-narrow'}}</span>
+                        </div>
+                        <div class="flex-row space-between weight-600">
+                            <span class="weight-600">Faces:<span color-dir color="primary"> {{selectedFace?.Face}}</span></span>
+                            <span color-dir color="green">{{selectedFace?.Price | currency:'INR':'symbol-narrow'}}</span>
+                        </div>
+                        <div class="flex-row space-between weight-600">
+                            <span class="weight-600">Frame: :<span color-dir color="primary">{{isFrameSelected? 'Yes' : 'No'}}</span></span>
+                            <span color-dir color="green">{{isFrameSelected ? (selectedFrame.Price | currency:'INR':'symbol-narrow') : (0 | currency:'INR':'symbol-narrow') }}</span>
+                        </div>
+                    </div>
+                    <div class="flex-row space-between align-center final-cost  gap-10">
+                            <span class="weight-600">Total Cost:</span>
+                        <span class="weight-800" color-dir color="green-recommended">
+                            {{ totalCost | currency:'INR':'symbol-narrow'}}
+                        </span>
+                    </div>
+                    <div class="flex-row-responsive justify-center">
+                        <button class="weight-500 buy-art" routerLink="/checkout">
+                            Proceed to Buy
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div *ngIf="isSpinning" class="ring">
+    Loading
+    <span class="spinner-inside"></span>
+</div> -->

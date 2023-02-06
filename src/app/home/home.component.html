@@ -1,0 +1,66 @@
+<div class="home padding-inline-responsive padding-block-4 padding-top-8">
+    <div class="flex-row-responsive gap-50 space-between align-center text-align-center ">
+        <h1 class="fuggles text-style-one weight-600" color-dir color="">
+            Sketch'<span color-dir color="accent">in</span> with <br /> <span color-dir color="primary"
+                class="weight-600">
+                Naval
+            </span>
+        </h1>
+        <div class="hero-image">
+            <img src="assets/images/sketch.svg" alt="">
+        </div>
+        <!-- <iframe src="https://giphy.com/embed/QLj1DlO0Qe2Ws" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p> -->
+    </div>
+</div>
+<div class="home-second padding-inline-responsive padding-block-4" color-dir backcolor="back-color">
+    <div class="flex-column gap-3 padding-bottom-4">
+        <h2 class="text-align-center heading-style-four weight-600" color-dir color="accent">My Art Collection</h2>
+        <p class="text-align-center body-text " color-dir color="primary-white">Get Handmade Sketches at affordable
+            price</p>
+    </div>
+    <div class="home-second-container">
+        <div class="grid columns-3 gap-40 padding-block-2">
+            <div class="card flex-column " *ngFor="let art of arts" (click)="onCardSelect()">
+                <div class="img-container">
+                    <img [src]="art.Image.data.attributes.url" alt="">
+                </div>
+                <div class="discount" color-dir color="accent">-{{art.Discount}}% </div>
+                <div class="card-content flex-column gap-10 text-align-center justify-center align-center">
+                    <div class="text-align-center weight-600 heading-style-five" color-dir color="primary-white">
+                        {{art.Name}}</div>
+                    <div class="flex-row icon-container">
+                        <div class="flex-row justify-center align-center gap-10 full-width">
+                            <div class="img-container ">
+                                <img src="assets/images/cart-1.svg" alt="" matTooltip="Cart">
+                            </div>
+                            <div class="img-container " (click)="onMagnifyClick(art.Image.data.attributes.url)">
+                                <img src="assets/images/magnify-2.svg" alt="" matTooltip="Magnify">
+                            </div>
+                            <a *ngIf="art.InstagramLink" class="img-container " [href]="art.InstagramLink"
+                                target="_blank">
+                                <img src="assets/images/instagram.svg" alt="" matTooltip="Instagram link">
+                            </a>
+                            <a *ngIf="art.YoutubeLink" class="img-container " [href]="art.YoutubeLink" target="_blank">
+
+                                <img src="assets/images/youtube.svg" alt="" matTooltip="Youtube Link">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedMagnifiedImage" class="home-magnified-container flex-column align-center justify-center">
+    <div class="img-container pointer" matTooltip="Close" (click)="onMagnifyClick('',true)">
+        <img src="assets/images/close.svg" alt="">
+    </div>
+    <div class="home-magnified-content">
+        <img [src]="selectedMagnifiedImage" alt="">
+    </div>
+</div>
+<!-- <div *ngIf="isSpinning" class="ring">
+    Loading
+    <span class="spinner-inside"></span>
+</div> -->

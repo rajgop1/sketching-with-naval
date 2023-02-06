@@ -1,1 +1,164 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import url("./global.scss");
+
+@include mat.core();
+$sunglow-palette: (
+  50 : #fff8e6,
+  100 : #ffefc1,
+  200 : #ffe497,
+  300 : #ffd96d,
+  400 : #ffd04e,
+  500 : #ffc82f,
+  600 : #ffc22a,
+  700 : #ffbb23,
+  800 : #ffb41d,
+  900 : #ffa712,
+  A100 : #ffffff,
+  A200 : #fffdf9,
+  A400 : #ffe8c6,
+  A700 : #ffdead,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$midnight-blue-palette: (
+  50 : #e2e4ee,
+  100 : #b8bbd4,
+  200 : #888db8,
+  300 : #585f9c,
+  400 : #353d86,
+  500 : #111b71,
+  600 : #0f1869,
+  700 : #0c145e,
+  800 : #0a1054,
+  900 : #050842,
+  A100 : #787bff,
+  A200 : #4549ff,
+  A400 : #1217ff,
+  A700 : #0006f7,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #d6d6d6,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+$my-primary: mat.define-palette($midnight-blue-palette, 500);
+$my-accent: mat.define-palette($sunglow-palette, 500);
+$my-warn: mat.define-palette(mat.$red-palette);
+$my-theme: mat.define-light-theme((color: (primary: $my-primary,
+        accent: $my-accent,
+        warn: $my-warn,
+      ),
+      density: 0,
+    ));
+@include mat.core-theme($my-theme);
+@include mat.button-theme($my-theme);
+@include mat.all-component-themes($my-theme);
+
+:root {
+  --accent: #FFC82F;
+  --accent-text: #f9b700;
+  --primary: #111B71;
+  --primary-black: #1F2222;
+  --primary-black-07: rgba(31, 34, 34, 0.7);
+  --primary-black-04: rgba(0, 0, 0, 0.4);
+  --primary-white: #F8F8FA;
+  --disabled-btn-color: rgba(17, 27, 113, 0.40);
+  --default-white: #FFF;
+  --gray-e7: #ebebe7;
+  --back-color: #1c1c1c;
+  --active-link-backcolor: rgb(246, 247, 246);
+  --card-backcolor: #FAFAFA;
+  --primary-yellow: rgba(255, 200, 47, 0.2);
+  --primary-green: rgba(52, 168, 83, 0.1);
+  --pending-color: #F99D1C;
+  --sold-color: #34A852;
+  --white-08: rgba(255, 255, 255, 0.8);
+  --green-recommended: #15764E;
+  --green-back-recommended: #E5F1E9;
+}
+
+@for $i from 1 through 100 {
+  .padding-inline-#{$i} {
+    padding-inline: #{$i}rem;
+  }
+
+  .padding-block-#{$i} {
+    padding-block: #{$i}rem;
+  }
+  .padding-top-#{$i} {
+    padding-top: #{$i}rem;
+  }
+  .padding-bottom-#{$i} {
+    padding-bottom: #{$i}rem;
+  }
+
+  .gap-#{$i} {
+    gap: #{$i}px;
+  }
+}
+
+@for $i from 1 through 10 {
+  .columns-#{$i} {
+    grid-template-columns: repeat(#{$i}, 1fr);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  overflow: overlay;
+  color: var(--primary-black);
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+body::-webkit-scrollbar {
+  width: 13px;
+ }
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ffc82fd0;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #ffbb00ea;
+}
+
+
+.fuggles {
+  font-family: 'Fuggles', cursive;
+}
