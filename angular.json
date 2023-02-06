@@ -103,5 +103,6 @@
         }
       }
     }
-  }
+  },
+  "defaultProject": "sketchin-with-naval"
 }

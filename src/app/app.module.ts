@@ -10,6 +10,7 @@ import { ArtCollectionsComponent } from './art-collections/art-collections.compo
 import { CreateArtComponent } from './create-art/create-art.component';
 import { ColorDirective } from './directive/color/color.directive';
 import { HeaderInterceptor } from './header.interceptor';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderInterceptor } from './header.interceptor';
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    ScullyLibModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi:true}
