@@ -15,7 +15,9 @@ export class HomeComponent  implements OnInit{
   ngOnInit(): void {
     this.apollo.getArt().subscribe((result:any) => {
       console.log(result)
-      this.arts = result.data.artCollections.data.map((val:any)=>val.attributes)
+      if(result?.data){
+        this.arts = result?.data?.artCollections?.data?.map((val:any)=>val.attributes)
+      }
     })
   }
   // variable and functions for create sketch
